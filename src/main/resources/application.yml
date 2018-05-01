@@ -1,0 +1,46 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/learn?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password:
+    sql-script-encoding: utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: springlearn
+    version: 1.0-SNAPSHOT
+  cloud:
+    consul:
+      port: 8500
+      host: dev-10
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        prefer-ip-address: true
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        fail-fast: false
+        register-health-check: true
+      config:
+        enabled: false
+  profiles:
+    active: prd
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: password
+server:
+  port: 9500
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  routes:
+    resource-manager:
+      path: /resource-manager/**
+      serviceId: resource-manager
+    orchestration:
+      path: /orchestration/**
+      serviceId: orchestration
