@@ -40,6 +40,8 @@ dependencies {
 	compile('org.springframework.cloud:spring-cloud-starter-openfeign')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile 'redis.clients:jedis:2.4.1'
+	compile "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
 }
 
 dependencyManagement {
