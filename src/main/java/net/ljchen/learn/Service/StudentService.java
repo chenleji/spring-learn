@@ -20,6 +20,10 @@ public class StudentService {
         return repository.getByAge(age);
     }
 
+    public StudentEntity getStudentById(Long id){
+        return repository.getOne(id);
+    }
+
     public List<StudentEntity> listStudents(){
         return repository.findAll();
     }

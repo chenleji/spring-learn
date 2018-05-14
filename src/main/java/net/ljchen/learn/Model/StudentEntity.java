@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String name;
 
@@ -17,7 +17,7 @@ public class StudentEntity {
 
     private int age;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
